@@ -4,6 +4,14 @@ const uuid = Uuid();
 
 enum Category { food, travel, leisure, work, other }
 
+const categoryIcons = {
+  Category.food: '🍔',
+  Category.travel: '✈️',
+  Category.leisure: '🎮',
+  Category.work: '💼',
+  Category.other: '🛍️',
+};
+
 class Expense {
   final String id;
   final String title;
