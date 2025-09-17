@@ -12,12 +12,20 @@ void main() {
         dialogTheme: DialogThemeData(backgroundColor: Colors.white),
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
-            backgroundColor: Colors.amber[900],
+        backgroundColor: Colors.amber[900],
           ),
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-            foregroundColor: Colors.amber[900],
+        foregroundColor: Colors.amber[900],
+          ),
+        ),
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: Colors.white,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.amber[900]!),
           ),
         ),
       ),

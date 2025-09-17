@@ -23,7 +23,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
           TextField(
@@ -37,7 +37,24 @@ class _NewExpenseState extends State<NewExpense> {
                 child: TextField(
                   controller: _amountController,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  decoration: InputDecoration(labelText: 'Amount'),
+                  decoration: InputDecoration(
+                    prefixText: 'R ',
+                    labelText: 'Amount',
+                  ),
+                ),
+              ),
+              SizedBox(width: 16),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('Selected Date'),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.calendar_month),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -45,7 +62,15 @@ class _NewExpenseState extends State<NewExpense> {
           Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+                SizedBox(width: 16),
                 FilledButton(
                   onPressed: () {
                     print(_titleController.text);
@@ -53,10 +78,6 @@ class _NewExpenseState extends State<NewExpense> {
                   },
                   child: Text('Save Expense'),
                 ),
-                SizedBox(width: 16),
-                TextButton(onPressed: () {
-                  Navigator.pop(context);
-                }, child: Text('Cancel')),
               ],
             ),
           ),
