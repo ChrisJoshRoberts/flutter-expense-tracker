@@ -6,6 +6,12 @@ void main() {
   runApp(
     MaterialApp(
       home: Expenses(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white, 
+      ),
+      darkTheme: ThemeData(
+        scaffoldBackgroundColor: Colors.grey[900],
+      ),
     ),
   );
 }
