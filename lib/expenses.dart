@@ -45,9 +45,25 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _removeExpense(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
     });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Expense Deleted'),
+        duration: Duration(seconds: 3),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
@@ -61,21 +77,18 @@ class _ExpensesState extends State<Expenses> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[900],
-        title: Text('Expense Tracker', style: TextStyle(color: Colors.white)),
+        title: Text('Expense Tracker'),
         actions: [
           IconButton(
             onPressed: _openAddExpenseOverlay,
-            icon: const Icon(Icons.add, color: Colors.white),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
       body: Column(
         children: [
           Text('The Chart'),
-          Expanded(
-            child: mainContent,
-          ),
+          Expanded(child: mainContent),
         ],
       ),
     );

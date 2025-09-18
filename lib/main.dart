@@ -2,36 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'package:expense_tracker/expenses.dart';
 
+var kColorScheme = ColorScheme.fromSeed(seedColor: Colors.amber.shade900);
+
 void main() {
   runApp(
     MaterialApp(
       home: Expenses(),
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white, 
-        primarySwatch: Colors.amber,
-        dialogTheme: DialogThemeData(backgroundColor: Colors.white),
-        filledButtonTheme: FilledButtonThemeData(
-          style: FilledButton.styleFrom(
-        backgroundColor: Colors.amber[900],
-          ),
+      theme: ThemeData().copyWith(
+        scaffoldBackgroundColor: kColorScheme.primaryContainer,
+        colorScheme: kColorScheme,
+        appBarTheme: AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.primary,
+          foregroundColor: kColorScheme.onPrimary,
         ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-        foregroundColor: Colors.amber[900],
-          ),
-        ),
-        bottomSheetTheme: BottomSheetThemeData(
-          backgroundColor: Colors.white,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.amber[900]!),
-          ),
-        ),
-      ),
-      darkTheme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[900],
-      ),
+        cardTheme: CardThemeData().copyWith(
+          color: kColorScheme.surfaceBright,
+        )
     ),
+  ),
   );
 }
