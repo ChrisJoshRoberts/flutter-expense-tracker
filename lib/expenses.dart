@@ -52,6 +52,13 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(context) {
+    Widget mainContent = const Center(
+      child: Text('No expenses found. Start adding some!'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(_registeredExpenses, _removeExpense);
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[900],
@@ -66,7 +73,9 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           Text('The Chart'),
-          Expanded(child: ExpensesList(_registeredExpenses, _removeExpense)),
+          Expanded(
+            child: mainContent,
+          ),
         ],
       ),
     );
