@@ -10,14 +10,25 @@ class ExpensesList extends StatelessWidget {
   @override
   Widget build(context) {
     return ListView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 16),
       itemCount: expenses.length,
       itemBuilder: (context, index) {
         return Dismissible(
+          background: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.error.withAlpha(150),
+              borderRadius: BorderRadius.circular(16), // Adjust radius here
+            ),
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(Icons.delete, color: Colors.white, size: 40),
+          ),
           key: ValueKey(expenses[index]),
           onDismissed: (direction) {
             onRemoveExpense(expenses[index]);
           },
-          child: ExpenseItem(expenses[index]));
+          child: ExpenseItem(expenses[index]),
+        );
       },
     );
   }

@@ -15,10 +15,8 @@ void main() {
           backgroundColor: kColorScheme.primary,
           foregroundColor: kColorScheme.onPrimary,
         ),
-        cardTheme: CardThemeData().copyWith(
-          color: kColorScheme.surfaceBright,
-        )
+        cardTheme: CardThemeData().copyWith(color: kColorScheme.surfaceBright),
+      ),
     ),
-  ),
   );
 }
