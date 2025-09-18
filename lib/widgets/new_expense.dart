@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart' as expense_model;
-import 'package:expense_tracker/expenses.dart';
 import 'package:expense_tracker/models/expense.dart';
 
 class NewExpense extends StatefulWidget {
@@ -78,7 +77,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           TextField(
