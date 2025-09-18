@@ -1,9 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart' as expense_model;
+import 'package:expense_tracker/expenses.dart';
+import 'package:expense_tracker/models/expense.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  final void Function(Expense expense) onAddExpense;
+  const NewExpense(this.onAddExpense,{super.key});
 
   @override
   State<NewExpense> createState() {
@@ -28,6 +30,42 @@ class _NewExpenseState extends State<NewExpense> {
         _selectedDate = value;
       });
     });
+  }
+
+  void _submitExpenseData() {
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    if (_titleController.text.trim().isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null ||
+        _SelectedCategory == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Invalid Input'),
+          content: Text(
+            'Please make sure all fields are filled out correctly.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: Text('Okay'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+    // Submit valid Data
+    widget.onAddExpense(Expense(
+      title: _titleController.text,
+      amount: enteredAmount,
+      date: _selectedDate!,
+      category: _SelectedCategory,
+    ));
+    Navigator.pop(context);
   }
 
   @override
@@ -121,10 +159,7 @@ class _NewExpenseState extends State<NewExpense> {
                 ),
                 SizedBox(width: 16),
                 FilledButton(
-                  onPressed: () {
-                    print(_titleController.text);
-                    print(_amountController.text);
-                  },
+                  onPressed: _submitExpenseData,
                   child: Text('Save Expense'),
                 ),
               ],
