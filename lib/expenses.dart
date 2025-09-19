@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 
 class Expenses extends StatefulWidget {
-  const Expenses({super.key});
+  final void Function() changeTheme;
+  const Expenses(this.changeTheme,{super.key});
 
   @override
   State<Expenses> createState() {
@@ -66,6 +67,8 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+
+
   @override
   Widget build(context) {
     Widget mainContent = const Center(
@@ -82,6 +85,14 @@ class _ExpensesState extends State<Expenses> {
           IconButton(
             onPressed: _openAddExpenseOverlay,
             icon: const Icon(Icons.add),
+          ),
+          IconButton(
+            onPressed: widget.changeTheme,
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.wb_sunny
+                  : Icons.nightlight_round,
+            ),
           ),
         ],
       ),

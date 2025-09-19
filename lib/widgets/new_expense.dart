@@ -128,12 +128,18 @@ class _NewExpenseState extends State<NewExpense> {
             child: Row(
               children: [
                 DropdownButton<expense_model.Category>(
+                  dropdownColor: Theme.of(context).colorScheme.surfaceBright,
+
                   value: _SelectedCategory,
                   hint: Text('Select Category'),
                   items: expense_model.Category.values.map((item) {
                     return DropdownMenuItem<expense_model.Category>(
                       value: item,
-                      child: Text(item.name),
+                      child: Text(
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                        item.name),
                     );
                   }).toList(),
                   onChanged: (value) {
