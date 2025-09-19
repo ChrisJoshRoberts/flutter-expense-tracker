@@ -2,10 +2,11 @@ import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 
 class Expenses extends StatefulWidget {
   final void Function() changeTheme;
-  const Expenses(this.changeTheme,{super.key});
+  const Expenses(this.changeTheme, {super.key});
 
   @override
   State<Expenses> createState() {
@@ -67,8 +68,6 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
-
-
   @override
   Widget build(context) {
     Widget mainContent = const Center(
@@ -98,7 +97,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          Text('The Chart'),
+          Expanded(child: Chart(expenses: _registeredExpenses)),
           Expanded(child: mainContent),
         ],
       ),
